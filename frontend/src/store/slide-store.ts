@@ -1,32 +1,39 @@
 import { create } from 'zustand';
 
-// 슬라이드 기본 타입
 export interface Slide {
   id: string;
+  text: string; // 테스트용 텍스트
 }
 
-// 스토어 상태 및 액션 타입
 interface SlideStore {
   slides: Slide[];
   activeSlideId: string | null;
   addSlide: () => void;
   setActiveSlide: (id: string) => void;
+  updateSlideText: (id: string, text: string) => void; // 텍스트 수정 액션
 }
 
-// 스토어 생성
-export const useSlideStore = create<SlideStore>((set) => ({
-  slides: [{ id: crypto.randomUUID() }], // 초기 슬라이드 1개
-  activeSlideId: null,
+// 초기 고유 ID 생성
+const initialId = crypto.randomUUID();
 
-  // 새 슬라이드 추가
+export const useSlideStore = create<SlideStore>((set) => ({
+  slides: [{ id: initialId, text: '제목을 추가하려면 클릭하세요' }], 
+  activeSlideId: initialId, // 초기 슬라이드 자동 선택
+
   addSlide: () => set((state) => {
-    const newSlide = { id: crypto.randomUUID() };
+    const newSlide = { id: crypto.randomUUID(), text: '' };
     return {
       slides: [...state.slides, newSlide],
-      activeSlideId: newSlide.id,
+      activeSlideId: newSlide.id, // 생성 후 바로 포커스
     };
   }),
 
-  // 활성 슬라이드 변경
   setActiveSlide: (id) => set({ activeSlideId: id }),
+
+  // 특정 슬라이드의 텍스트만 업데이트
+  updateSlideText: (id, text) => set((state) => ({
+    slides: state.slides.map((slide) => 
+      slide.id === id ? { ...slide, text } : slide
+    )
+  })),
 }));

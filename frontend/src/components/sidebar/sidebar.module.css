@@ -1,0 +1,63 @@
+.sidebar {
+  width: 200px;
+  border-right: 1px solid #e0e0e0;
+  overflow-y: auto;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+}
+
+.addBtn {
+  margin: 16px;
+  padding: 8px;
+  background-color: #ffffff;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.addBtn:hover {
+  background-color: #f1f3f4;
+}
+
+.item {
+  padding: 8px 16px;
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.item.active {
+  background-color: #e8f0fe;
+}
+
+.num {
+  font-size: 12px;
+  color: #5f6368;
+  margin-top: 4px;
+  width: 16px;
+}
+
+/* 썸네일 UI */
+.thumbWrapper {
+  width: 144px; /* 사이드바 너비에 맞춘 썸네일 가로 크기 */
+  aspect-ratio: 16 / 9;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.thumbWrapper.active {
+  border: 2px solid #1a73e8;
+}
+
+.thumbScaler {
+  width: 960px; /* 원본 슬라이드 가로와 동일 */
+  height: 540px; /* 원본 슬라이드 세로와 동일 */
+  transform-origin: top left; /* 축소의 기준점 */
+  transform: scale(0.15); /* 144px / 960px = 0.15 (15% 크기로 축소) */
+  pointer-events: none; /* 썸네일 안에서는 클릭이나 편집이 안 되게 */
+}
