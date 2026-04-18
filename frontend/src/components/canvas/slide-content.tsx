@@ -1,10 +1,11 @@
-import { type Slide, useSlideStore } from '../../store/slide-store';
+import { type Slide } from '../../store/slide-store';
+import { useSlideStore } from '../../store/slide-store';
 
 interface Props {
   slide: Slide;
 }
 
-// 캔버스와 사이드바 썸네일에서 공통으로 사용할 슬라이드 알맹이
+// 캔버스와 사이드바 썸네일에서 공통으로 사용할 슬라이드 파트
 export default function SlideContent({ slide }: Props) {
   const { updateSlideText } = useSlideStore();
 
@@ -13,9 +14,11 @@ export default function SlideContent({ slide }: Props) {
       value={slide.text}
       onChange={(e) => updateSlideText(slide.id, e.target.value)}
       style={{
+        position: 'absolute',
+        top: '40px',
+        left: '10%',
         width: '80%',
         height: '100px',
-        margin: '40px auto',
         display: 'block',
         fontSize: '24px',
         textAlign: 'center',

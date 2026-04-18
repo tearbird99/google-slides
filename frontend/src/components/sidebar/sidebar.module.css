@@ -5,20 +5,7 @@
   background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
-}
-
-.addBtn {
-  margin: 16px;
-  padding: 8px;
-  background-color: #ffffff;
-  border: 1px solid #dadce0;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.addBtn:hover {
-  background-color: #f1f3f4;
+  outline: none; /* 포커스 시 발생하는 외곽선 제거. */
 }
 
 .item {
@@ -39,9 +26,8 @@
   width: 16px;
 }
 
-/* 썸네일 UI */
 .thumbWrapper {
-  width: 144px; /* 사이드바 너비에 맞춘 썸네일 가로 크기 */
+  width: 144px;
   aspect-ratio: 16 / 9;
   border: 1px solid #dadce0;
   border-radius: 4px;
@@ -55,9 +41,9 @@
 }
 
 .thumbScaler {
-  width: 960px; /* 원본 슬라이드 가로와 동일 */
-  height: 540px; /* 원본 슬라이드 세로와 동일 */
-  transform-origin: top left; /* 축소의 기준점 */
-  transform: scale(0.15); /* 144px / 960px = 0.15 (15% 크기로 축소) */
-  pointer-events: none; /* 썸네일 안에서는 클릭이나 편집이 안 되게 */
+  width: 960px;
+  height: 540px;
+  transform-origin: top left;
+  transform: scale(0.15);
+  pointer-events: none;
 }

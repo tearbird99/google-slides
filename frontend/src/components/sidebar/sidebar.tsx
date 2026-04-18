@@ -1,16 +1,27 @@
 import styles from './sidebar.module.css';
 import { useSlideStore } from '../../store/slide-store';
-import SlideContent from '../canvas/slide-content'; // 추가
+import SlideContent from '../canvas/slide-content';
 
 export default function Sidebar() {
-  const { slides, activeSlideId, addSlide, setActiveSlide } = useSlideStore();
+  const { slides, activeSlideId, setActiveSlide, addSlide, deleteSlide } = useSlideStore();
+
+  // 키보드 입력 감지 및 액션 실행.
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      addSlide();
+    } else if (e.key === 'Backspace' || e.key === 'Delete') {
+      e.preventDefault();
+      deleteSlide();
+    }
+  };
 
   return (
-    <aside className={styles.sidebar}>
-      <button className={styles.addBtn} onClick={addSlide}>
-        + 새 슬라이드
-      </button>
-      
+    <aside 
+      className={styles.sidebar}
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+    >
       {slides.map((slide, index) => (
         <div 
           key={slide.id} 
@@ -19,14 +30,11 @@ export default function Sidebar() {
         >
           <span className={styles.num}>{index + 1}</span>
           
-          {/* 축소된 슬라이드가 들어갈 썸네일 영역 */}
           <div className={`${styles.thumbWrapper} ${activeSlideId === slide.id ? styles.active : ''}`}>
             <div className={styles.thumbScaler}>
-              {/* 메인 캔버스와 완전히 똑같은 슬라이드를 렌더링*/}
               <SlideContent slide={slide} />
             </div>
           </div>
-
         </div>
       ))}
     </aside>
