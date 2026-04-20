@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { arrayMove } from '@dnd-kit/sortable';
 
 export interface Slide {
   id: string;
@@ -12,6 +13,7 @@ interface SlideStore {
   deleteSlide: () => void;
   setActiveSlide: (id: string) => void;
   updateSlideText: (id: string, text: string) => void;
+  reorderSlides: (activeId: string, overId: string) => void;
 }
 
 const initialId = crypto.randomUUID();
@@ -61,4 +63,13 @@ export const useSlideStore = create<SlideStore>((set) => ({
       slide.id === id ? { ...slide, text } : slide
     )
   })),
+
+  // 슬라이드 순서를 변경.
+  reorderSlides: (activeId, overId) => set((state) => {
+    const oldIndex = state.slides.findIndex((s) => s.id === activeId);
+    const newIndex = state.slides.findIndex((s) => s.id === overId);
+    return {
+      slides: arrayMove(state.slides, oldIndex, newIndex),
+    };
+  }),
 }));
