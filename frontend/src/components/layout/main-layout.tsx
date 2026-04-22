@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './main-layout.module.css';
-import Sidebar from '../sidebar/sidebar'; // 추가
+import Sidebar from '../sidebar/sidebar';
+import Header from './header';
 
 interface Props {
   children: React.ReactNode;
@@ -9,14 +10,11 @@ interface Props {
 export default function MainLayout({ children }: Props) {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <div>메뉴 및 툴바</div>
-      </header>
+      {/* 분리한 헤더 컴포넌트 적용. */}
+      <Header />
 
       <div className={styles.body}>
-        {/* 분리한 사이드바 컴포넌트 적용 */}
         <Sidebar />
-
         <main className={styles.main}>
           {children}
         </main>

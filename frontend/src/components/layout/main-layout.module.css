@@ -6,15 +6,6 @@
   width: 100vw;
 }
 
-/* 상단 헤더 */
-.header {
-  height: 64px;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-}
-
 /* 하단 작업 공간 */
 .body {
   display: flex;

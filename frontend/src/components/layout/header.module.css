@@ -1,0 +1,98 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #f8f9fa;
+  padding-bottom: 8px;
+}
+
+/* 상단 타이틀 및 메뉴바 행. */
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  background-color: #f4b400;
+  border-radius: 4px;
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 18px;
+  color: #202124;
+  margin: 0 0 2px 0;
+  padding: 0 4px;
+}
+
+.menuBar {
+  display: flex;
+  gap: 16px;
+  font-size: 14px;
+  color: #5f6368;
+  padding: 0 4px;
+}
+
+.menuItem {
+  cursor: pointer;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 하단 도구 모음 행. */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px 16px;
+  margin: 0 16px;
+  background-color: #edf2fa;
+  border-radius: 24px;
+  min-height: 40px;
+  overflow-x: auto;
+}
+
+.toolGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background-color: #c7c7c7;
+  margin: 0 8px;
+}
+
+.toolItem {
+  font-size: 13px;
+  color: #444746;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.toolItem:hover {
+  background-color: #e0e5eb;
+}
