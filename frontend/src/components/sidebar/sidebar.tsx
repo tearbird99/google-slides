@@ -37,12 +37,30 @@ export default function Sidebar() {
 
   // 키보드 입력 감지 및 액션 실행.
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    const currentIndex = slides.findIndex(s => s.id === activeSlideId);
+
+    // 제어할 키 배열 지정.
+    const handledKeys = ['Enter', 'Backspace', 'Delete', 'ArrowUp', 'ArrowDown'];
+
+    // 배열에 포함된 키만 기본 동작 방지.
+    if (handledKeys.includes(e.key)) {
       e.preventDefault();
-      addSlide();
-    } else if (e.key === 'Backspace' || e.key === 'Delete') {
-      e.preventDefault();
-      deleteSlide();
+    }
+
+    switch (e.key) {
+      case 'Enter':
+        addSlide();
+        break;
+      case 'Backspace':
+      case 'Delete':
+        deleteSlide();
+        break;
+      case 'ArrowUp':
+        if (currentIndex > 0) setActiveSlide(slides[currentIndex - 1].id);
+        break;
+      case 'ArrowDown':
+        if (currentIndex < slides.length - 1) setActiveSlide(slides[currentIndex + 1].id);
+        break;
     }
   };
 
