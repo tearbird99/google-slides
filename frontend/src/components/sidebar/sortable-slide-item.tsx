@@ -22,15 +22,16 @@ export default function SortableSlideItem({ slide, index, isActive, onSelect }: 
   } = useSortable({ id: slide.id });
 
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Translate.toString(transform),
     transition,
     opacity: isDragging ? 0.5 : 1, // 드래그 중인 아이템의 투명도를 조절.
-    zIndex: isDragging ? 1 : 'auto',
+    zIndex: isDragging ? 999 : 'auto',
     touchAction: 'none', // 브라우저 기본 동작을 차단.
   };
 
   return (
     <div
+      id={`slide-thumb-${slide.id}`}
       ref={setNodeRef}
       style={style}
       {...attributes}

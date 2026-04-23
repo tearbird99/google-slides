@@ -1,11 +1,29 @@
 .sidebar {
-  width: 200px;
+  width: 220px;
   border-right: 1px solid #e0e0e0;
   overflow-y: auto;
+  overflow-x: hidden;
   background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
   outline: none; /* 포커스 시 발생하는 외곽선 제거. */
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 8px; /* 얇은 스크롤바. */
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent; /* 배경 투명. */
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #dadce0; /* 연한 회색. */
+  border-radius: 4px; /* 둥근 모서리. */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: #bdc1c6; /* 마우스 올렸을 때 조금 더 진하게. */
 }
 
 .item {
