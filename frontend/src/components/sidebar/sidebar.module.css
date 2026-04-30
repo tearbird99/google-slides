@@ -1,3 +1,4 @@
+/* 사이드바 기본 스타일. */
 .sidebar {
   width: 220px;
   border-right: 1px solid #e0e0e0;
@@ -6,24 +7,24 @@
   background-color: #f8f9fa;
   display: flex;
   flex-direction: column;
-  outline: none; /* 포커스 시 발생하는 외곽선 제거. */
+  outline: none;
 }
 
 .sidebar::-webkit-scrollbar {
-  width: 8px; /* 얇은 스크롤바. */
+  width: 8px;
 }
 
 .sidebar::-webkit-scrollbar-track {
-  background: transparent; /* 배경 투명. */
+  background: transparent;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background-color: #dadce0; /* 연한 회색. */
-  border-radius: 4px; /* 둥근 모서리. */
+  background-color: #dadce0;
+  border-radius: 4px;
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background-color: #bdc1c6; /* 마우스 올렸을 때 조금 더 진하게. */
+  background-color: #bdc1c6;
 }
 
 .item {
@@ -50,24 +51,29 @@
   width: 16px;
 }
 
+/* 썸네일 껍데기. */
 .thumbWrapper {
-  width: 144px;
-  aspect-ratio: 16 / 9;
-  border: 1px solid #dadce0;
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: #ffffff;
   position: relative;
+  width: 144px;
+  height: 81px;
+  background-color: #fff;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
 }
 
 .thumbWrapper.active {
   border: 2px solid #1a73e8;
 }
 
+/* 썸네일 내부 축소 영역. */
 .thumbScaler {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 960px;
   height: 540px;
-  transform-origin: top left;
   transform: scale(0.15);
+  transform-origin: top left;
   pointer-events: none;
 }

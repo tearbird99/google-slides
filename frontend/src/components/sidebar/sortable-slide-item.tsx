@@ -35,14 +35,14 @@ export default function SortableSlideItem({ slide, index, isActive, onSelect }: 
       ref={setNodeRef}
       style={style}
       {...attributes}
-      {...listeners} // 드래그 핸들 역할을 하도록 리스너를 주입.
+      {...listeners}
       className={`${styles.item} ${isActive ? styles.active : ''}`}
       onClick={() => onSelect(slide.id)}
     >
       <span className={styles.num}>{index + 1}</span>
       <div className={`${styles.thumbWrapper} ${isActive ? styles.active : ''}`}>
         <div className={styles.thumbScaler}>
-          <SlideContent slide={slide} />
+          <SlideContent slide={slide} isThumbnail={true} />
         </div>
       </div>
     </div>
