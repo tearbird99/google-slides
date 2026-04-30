@@ -7,7 +7,7 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import type { DragEndEvent } from '@dnd-kit/core'; // 타입 임포트 분리
+import type { DragEndEvent } from '@dnd-kit/core';
 import {
   sortableKeyboardCoordinates,
   SortableContext,
@@ -30,14 +30,14 @@ export default function Sidebar() {
             block: 'nearest',   
           });
         }
-      }, 50); // 50ms 지연
+      }, 50); // 렌더 완료 후 스크롤 실행
 
-      return () => clearTimeout(timer); // 메모리 누수 방지용 클린업
+      return () => clearTimeout(timer);
   }, [activeSlideId]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
-      activationConstraint: { distance: 5 }, // 5px 이상 움직여야 드래그로 간주.
+      activationConstraint: { distance: 5 }, // 5px 미만은 클릭으로 처리
     }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
@@ -51,14 +51,11 @@ export default function Sidebar() {
     }
   };
 
-  // 키보드 입력 감지 및 액션 실행.
   const handleKeyDown = (e: React.KeyboardEvent) => {
     const currentIndex = slides.findIndex(s => s.id === activeSlideId);
 
-    // 제어할 키 배열 지정.
     const handledKeys = ['Enter', 'Backspace', 'Delete', 'ArrowUp', 'ArrowDown'];
 
-    // 배열에 포함된 키만 기본 동작 방지.
     if (handledKeys.includes(e.key)) {
       e.preventDefault();
     }
@@ -88,7 +85,6 @@ export default function Sidebar() {
         onDragEnd={handleDragEnd}
         modifiers={[restrictToVerticalAxis]}
       >
-        {/* id 문자열 배열을 매핑하여 전달. */}
         <SortableContext items={slides.map((s) => s.id)} strategy={verticalListSortingStrategy}>
           {slides.map((slide, index) => (
             <SortableSlideItem

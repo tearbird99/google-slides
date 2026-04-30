@@ -19,7 +19,6 @@ export default function TextBox({
   isThumbnail = false,
   children,
 }: Props) {
-  // 🌟 undefined 방지: 값이 없으면 기본값을 사용하도록 Null 병합 연산자(??) 사용
   const safeX = x ?? 100;
   const safeY = y ?? 100;
   const safeW = w ?? 500;
@@ -87,7 +86,7 @@ export default function TextBox({
     if (newW < 50) { newW = 50; newX = rect.x; }
     if (newH < 30) { newH = 30; newY = rect.y; }
 
-    // 🌟 여기서는 로컬 상태(화면에 보이는 박스)만 업데이트함!
+    // 드래그 중에는 로컬 상태만 업데이트
     setRect({ x: newX, y: newY, w: newW, h: newH });
   };
 
@@ -97,7 +96,7 @@ export default function TextBox({
     }
     activeHandle.current = null;
     
-    // 🌟 드래그가 끝난 시점에만 전역 스토어를 업데이트하여 썸네일에 반영함!
+    // pointerup 시점에만 스토어 동기화
     onChange?.(rect);
   };
 

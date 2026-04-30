@@ -9,7 +9,6 @@ export interface MenuItem {
   isChecked?: boolean;
 }
 
-// 파일 메뉴 데이터.
 export const fileMenuData: MenuItem[] = [
   { id: 'new', label: '새 문서', hasSubmenu: true },
   { id: 'open', label: '열기', shortcut: 'Ctrl+O' },
@@ -38,7 +37,6 @@ export const fileMenuData: MenuItem[] = [
   { id: 'print', label: '인쇄', shortcut: 'Ctrl+P' },
 ];
 
-// 수정 메뉴 데이터.
 export const editMenuData: MenuItem[] = [
   { id: 'undo', label: '실행취소', shortcut: 'Ctrl+Z' },
   { id: 'redo', label: '재실행', shortcut: 'Ctrl+Y' },
@@ -55,7 +53,6 @@ export const editMenuData: MenuItem[] = [
   { id: 'find-replace', label: '찾기 및 바꾸기', shortcut: 'Ctrl+H' },
 ];
 
-// 보기 메뉴 데이터.
 export const viewMenuData: MenuItem[] = [
   { id: 'mode', label: '모드', hasSubmenu: true },
   { id: 'div1', label: '', isDivider: true },
@@ -78,7 +75,6 @@ export const viewMenuData: MenuItem[] = [
   { id: 'fullscreen', label: '전체 화면' },
 ];
 
-// 삽입 메뉴 데이터.
 export const insertMenuData: MenuItem[] = [
   { id: 'image', label: '이미지', hasSubmenu: true },
   { id: 'text-box', label: '텍스트 상자' },
@@ -102,7 +98,6 @@ export const insertMenuData: MenuItem[] = [
   { id: 'slide-number', label: '슬라이드 번호' },
 ];
 
-// 서식 메뉴 데이터.
 export const formatMenuData: MenuItem[] = [
   { id: 'text', label: '텍스트', hasSubmenu: true, disabled: true },
   { id: 'align-indent', label: '정렬 및 들여쓰기', hasSubmenu: true, disabled: true },
@@ -117,7 +112,6 @@ export const formatMenuData: MenuItem[] = [
   { id: 'clear-formatting', label: '서식 지우기', shortcut: 'Ctrl+\\', disabled: true },
 ];
 
-// 슬라이드 메뉴 데이터.
 export const slideMenuData: MenuItem[] = [
   { id: 'new-slide', label: '새 슬라이드', shortcut: 'Ctrl+M' },
   { id: 'div1', label: '', isDivider: true },
@@ -137,7 +131,6 @@ export const slideMenuData: MenuItem[] = [
   { id: 'change-theme', label: '테마 변경' },
 ];
 
-// 정렬 메뉴 데이터.
 export const arrangeMenuData: MenuItem[] = [
   { id: 'order', label: '순서', hasSubmenu: true, disabled: true },
   { id: 'align', label: '정렬', hasSubmenu: true, disabled: true },
@@ -150,7 +143,6 @@ export const arrangeMenuData: MenuItem[] = [
   { id: 'ungroup', label: '그룹해제', shortcut: 'Ctrl+Alt+Shift+G', disabled: true },
 ];
 
-// 도구 메뉴 데이터.
 export const toolsMenuData: MenuItem[] = [
   { id: 'spell-check', label: '맞춤법 검사', hasSubmenu: true },
   { id: 'linked-objects', label: '연결된 객체' },
@@ -165,7 +157,6 @@ export const toolsMenuData: MenuItem[] = [
   { id: 'workspace-experiments', label: 'Workspace Experiments 참여 거부' },
 ];
 
-// 도움말 메뉴 데이터.
 export const helpMenuData: MenuItem[] = [
   { id: 'search-menu', label: '메뉴 검색', shortcut: 'Alt+/' },
   { id: 'div1', label: '', isDivider: true },

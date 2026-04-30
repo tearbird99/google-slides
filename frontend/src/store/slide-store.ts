@@ -24,8 +24,7 @@ interface SlideStore {
 const initialId = crypto.randomUUID();
 
 export const useSlideStore = create<SlideStore>((set) => ({
-  // 첫 슬라이드 생성 시 기본 좌표와 크기를 부여함.
-  slides: [{ 
+  slides: [{
     id: initialId, 
     text: '제목을 추가하려면 클릭하세요',
     x: 100,
@@ -35,9 +34,8 @@ export const useSlideStore = create<SlideStore>((set) => ({
   }], 
   activeSlideId: initialId,
 
-  // 현재 활성화된 슬라이드 바로 뒤에 추가함.
+  // 활성 슬라이드 바로 뒤에 삽입
   addSlide: () => set((state) => {
-    // 새 슬라이드 생성 시 기본 좌표와 크기를 무조건 부여함.
     const newSlide = { 
       id: crypto.randomUUID(), 
       text: '',
@@ -61,7 +59,6 @@ export const useSlideStore = create<SlideStore>((set) => ({
     };
   }),
 
-  // 활성화된 슬라이드 삭제 및 포커스 이동.
   deleteSlide: () => set((state) => {
     if (state.slides.length <= 1) return state;
 
@@ -92,7 +89,6 @@ export const useSlideStore = create<SlideStore>((set) => ({
       ),
     })),
 
-  // 슬라이드 순서를 변경.
   reorderSlides: (activeId, overId) => set((state) => {
     const oldIndex = state.slides.findIndex((s) => s.id === activeId);
     const newIndex = state.slides.findIndex((s) => s.id === overId);

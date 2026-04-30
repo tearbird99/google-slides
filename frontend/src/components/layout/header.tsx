@@ -48,7 +48,6 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      {/* 상단 타이틀 및 메뉴바 영역. */}
       <div className={styles.topRow}>
         <div className={styles.leftSection}>
           <div className={styles.logo}></div>
@@ -78,7 +77,6 @@ export default function Header() {
                             className={`${styles.dropdownItem} ${item.disabled ? styles.disabled : ''}`}
                           >
                             <div className={styles.itemLeft}>
-                              {/* 체크 아이콘 렌더링. */}
                               <span className={styles.checkIcon}>
                                 {item.isChecked ? '✓' : ''}
                               </span>

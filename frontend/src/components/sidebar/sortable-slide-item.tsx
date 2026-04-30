@@ -24,9 +24,9 @@ export default function SortableSlideItem({ slide, index, isActive, onSelect }: 
   const style = {
     transform: CSS.Translate.toString(transform),
     transition,
-    opacity: isDragging ? 0.5 : 1, // 드래그 중인 아이템의 투명도를 조절.
+    opacity: isDragging ? 0.5 : 1,
     zIndex: isDragging ? 999 : 'auto',
-    touchAction: 'none', // 브라우저 기본 동작을 차단.
+    touchAction: 'none', // 드래그 중 스크롤 방지
   };
 
   return (
