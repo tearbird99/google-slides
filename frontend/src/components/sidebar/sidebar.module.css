@@ -58,11 +58,19 @@
   height: 81px;
   background-color: #fff;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
   border-radius: 4px;
 }
 
-.thumbWrapper.active {
+.thumbWrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.thumbWrapper.active::after {
   border: 2px solid #1a73e8;
 }
 
