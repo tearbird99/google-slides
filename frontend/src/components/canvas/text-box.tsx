@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import styles from './text-box.module.css';
 
 type HandleType = 'nw' | 'n' | 'ne' | 'e' | 'se' | 's' | 'sw' | 'w' | 'move' | null;
@@ -25,13 +25,9 @@ export default function TextBox({
   const safeH = h ?? 150;
 
   const [rect, setRect] = useState({ x: safeX, y: safeY, w: safeW, h: safeH });
-
-  useEffect(() => {
-    setRect({ x: safeX, y: safeY, w: safeW, h: safeH });
-  }, [safeX, safeY, safeW, safeH]);
-  
   const [isActive, setIsActive] = useState(false);
   const activeHandle = useRef<HandleType>(null);
+  const hasDragged = useRef(false);
   const startPos = useRef({ x: 0, y: 0, rectX: 0, rectY: 0, rectW: 0, rectH: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -61,12 +57,14 @@ export default function TextBox({
     e.currentTarget.setPointerCapture(e.pointerId);
     setIsActive(true);
     activeHandle.current = handle;
+    hasDragged.current = false;
     containerRef.current?.focus();
     startPos.current = { x: e.clientX, y: e.clientY, rectX: rect.x, rectY: rect.y, rectW: rect.w, rectH: rect.h };
   };
 
   const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!activeHandle.current) return;
+    hasDragged.current = true;
     const deltaX = e.clientX - startPos.current.x;
     const deltaY = e.clientY - startPos.current.y;
     const { rectX, rectY, rectW, rectH } = startPos.current;
@@ -83,8 +81,8 @@ export default function TextBox({
       if (handle.includes('n')) { newY = rectY + deltaY; newH = rectH - deltaY; }
     }
 
-    if (newW < 50) { newW = 50; newX = rect.x; }
-    if (newH < 30) { newH = 30; newY = rect.y; }
+    if (newW < 50) { newW = 50; newX = startPos.current.rectX + startPos.current.rectW - 50; }
+    if (newH < 30) { newH = 30; newY = startPos.current.rectY + startPos.current.rectH - 30; }
 
     // 드래그 중에는 로컬 상태만 업데이트
     setRect({ x: newX, y: newY, w: newW, h: newH });
@@ -95,9 +93,9 @@ export default function TextBox({
       e.currentTarget.releasePointerCapture(e.pointerId);
     }
     activeHandle.current = null;
-    
     // pointerup 시점에만 스토어 동기화
-    onChange?.(rect);
+    if (hasDragged.current) onChange?.(rect);
+    hasDragged.current = false;
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {

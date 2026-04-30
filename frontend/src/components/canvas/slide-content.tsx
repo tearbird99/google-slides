@@ -24,6 +24,7 @@ export default function SlideContent({ slide, isThumbnail = false }: Props) {
 
   return (
     <TextBox
+      key={slide.id}
       x={slide.x}
       y={slide.y}
       w={slide.w}
